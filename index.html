@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🎃 Halloween Candy Battle — ОНЛАЙН</title>
+<style>*{margin:0;box-sizing:border-box;font-family:Arial}body{background:#000;color:#fff;overflow:hidden}
+#hud{position:fixed;top:0;left:0;right:0;display:flex;gap:8px;padding:8px;z-index:5;flex-wrap:wrap}
+.pill{background:rgba(20,0,30,.8);padding:8px 14px;border-radius:20px;font-size:15px;font-weight:700;border:1px solid #ff5722}
+#menu{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#4a148c,#000 70%);z-index:20;text-align:center;padding:16px}
+.card{background:rgba(255,255,255,.07);padding:26px;border-radius:20px;border:2px solid #ff5722;max-width:540px}
+h1{font-size:34px}input{padding:12px;font-size:18px;border-radius:10px;border:2px solid #ff5722;background:#111;color:#fff;width:170px;text-align:center;text-transform:uppercase}
+button{padding:12px 20px;font-size:16px;border-radius:12px;border:0;cursor:pointer;font-weight:800;margin:4px}
+#err{position:fixed;bottom:0;left:0;right:0;background:#b71c1c;color:#fff;padding:8px;font-size:13px;display:none;z-index:99}
+#msg{position:fixed;top:35%;width:100%;text-align:center;font-size:44px;font-weight:900;text-shadow:0 4px 20px #000;display:none;z-index:6}
+canvas.game{position:fixed;top:0;left:0;z-index:1}
+#touch{position:fixed;inset:auto 0 0 0;display:none;justify-content:space-between;align-items:flex-end;padding:14px;z-index:10;pointer-events:none}
+#joy{width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.1);border:2px solid #ff5722;position:relative;pointer-events:auto;touch-action:none}
+#stick{width:56px;height:56px;border-radius:50%;background:#ff5722;position:absolute;left:37px;top:37px;box-shadow:0 0 15px #ff5722}
+.tbtn{width:74px;height:74px;border-radius:50%;border:2px solid #ffeb3b;background:rgba(0,0,0,.5);color:#fff;font-size:30px;pointer-events:auto;touch-action:none;margin-left:8px}
+#btnRow{display:flex}
+</style></head><body>
+<div id="hud" style="display:none"><div class="pill" id="pMe">🎃 0🍬</div><div class="pill" id="pFoe">👻 0🍬</div>
+<div class="pill" id="pTime">⏱ 99</div><div class="pill">🏆 15🍬</div></div>
+<div id="msg"></div><div id="err"></div>
+<div id="touch"><div id="joy"><div id="stick"></div></div>
+<div id="btnRow"><button class="tbtn" id="tJump">⬆</button><button class="tbtn" id="tCam">👀</button></div></div>
+<div id="menu"><div class="card"><h1>🎃 CANDY BATTLE 👻</h1>
+<p>Битва 1 на 1 по интернету! Собери 15 конфет 🍬</p>
+<p><input id="room" maxlength="4" placeholder="Q7WX"></p>
+<p><button id="hostB" style="background:#00c853;color:#fff">Создать</button><button id="joinB" style="background:#ff9100;color:#fff">Подключиться</button></p>
+<p><button id="soloB" style="background:#555;color:#fff">Играть одному</button></p>
+<div id="status">Код: придумай редкий (напр. Q7WX), друг вводит тот же</div>
+<p style="font-size:12px;opacity:.8">WASD — бег | ПРОБЕЛ — прыжок | клик — камера</p>
+</div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script>
+window.onerror=function(m,s,l){var e=document.getElementById('err');e.style.display='block';e.textContent='Ошибка: '+m+' ('+l+')';};
+if(typeof THREE==='undefined'){document.getElementById('err').style.display='block';
+document.getElementById('err').textContent='THREE не загрузился! Включи интернет и обнови.';}
+</script>
+<script src="config.js"></script><script src="textures.js"></script><script src="net.js"></script>
+<script src="game.js"></script>
+</body></html>
